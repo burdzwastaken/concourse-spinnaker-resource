@@ -1,0 +1,26 @@
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: git@github.com:burdzwastaken/concourse-spinnaker-resource.git
+    branch: master
+    private_key: ((ssh_key))
+- name: docker-hub
+  type: docker-image
+  source:
+    repository: burdz/concourse-spinnaker-resource
+    email: ((docker_email))
+    username: ((docker_username))
+    password: ((docker_password))
+
+jobs:
+- name: build-resource-image
+  plan:
+  - get: source-code
+    trigger: true
+  - task: build-resource
+    file: source-code/ci/tasks/build-resource.yml
+  - put: docker-hub
+    params:
+      build: build-output

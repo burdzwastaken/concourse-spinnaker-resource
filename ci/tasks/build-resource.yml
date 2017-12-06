@@ -1,0 +1,17 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: concourse/static-golang
+
+inputs:
+- name: source-code
+  path: gopath/src/github.com/burdzwastaken/concourse-spinnaker-resource
+
+outputs:
+- name: build-output
+
+run:
+  path: gopath/src/github.com/burdzwastaken/concourse-spinnaker-resource/ci/tasks/build-source.sh
