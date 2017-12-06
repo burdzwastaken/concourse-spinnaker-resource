@@ -18,7 +18,7 @@ type MetadataPair struct {
 type OutParams struct {
 	SpinnakerApplication string                 `json:"spinnaker_application"`
 	SpinnakerPipeline    string                 `json:"spinnaker_pipeline"`
-	TriggerParams        map[string]map[string]interface{} `json:"trigger_params,omitempty"` // optional
+	TriggerParams        map[string]string `json:"trigger_params,omitempty"` // optional
 }
 
 type OutRequest struct {
