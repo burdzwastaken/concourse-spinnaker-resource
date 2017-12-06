@@ -1,4 +1,4 @@
-# Spinnaker Concourse Resource
+# Concourse Spinnaker Resource
 
 A [Concourse](https://concourse.ci/) resource that allows jobs to trigger [Spinnaker](https://spinnaker.io/) pipelines. 
 
