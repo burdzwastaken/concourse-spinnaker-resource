@@ -48,10 +48,8 @@ func main() {
 	} else {
 		for key, value := range request.Params.TriggerParams {
 			Params = Params + fmt.Sprintf("\"%s\":\"%s\",", key, value)
-			concourse.Sayf("params: '%s'\n", Params)
 		}
 		Params = strings.TrimSuffix(Params, ",")
-		concourse.Sayf("params: '%s'\n", Params)
 		TriggerParams = []byte(`{"type": "concourse-resource", "parameters": {` + Params + `}}`)
 	}
 
@@ -70,6 +68,8 @@ func main() {
 			ExecutionID: strings.Split(Data["ref"].(string), "/")[2],
 		}
 	}
+
+	concourse.Sayf("Pipeline executed successfully")
 
 	concourse.WriteResponse(output)
 }
