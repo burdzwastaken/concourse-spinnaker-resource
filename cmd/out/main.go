@@ -47,7 +47,7 @@ func main() {
 		TriggerParams = []byte(`{"type": "concourse-resource"}`)
 	} else {
 		for key, value := range request.Params.TriggerParams {
-			Params = Params + fmt.Sprintf("\"%s:%s\",", key, value)
+			Params = Params + fmt.Sprintf("\"%s\":\"%s\",", key, value)
 			concourse.Sayf("params: '%s'\n", Params)
 		}
 		Params = strings.TrimSuffix(Params, ",")
