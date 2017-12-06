@@ -23,7 +23,7 @@ func main() {
 
 	concourse.ReadRequest(&request)
 
-	cert, err := tls.LoadX509KeyPair(request.Source.X509Cert, request.Source.X509Key)
+	cert, err := tls.X509KeyPair([]byte(request.Source.X509Cert), []byte(request.Source.X509Key))
 	if err != nil {
 		concourse.Fatal("Error reading X509 key pair: \n%v\n", err)
 	}
