@@ -5,7 +5,7 @@
 	"Deps": [
 		{
 			"ImportPath": "github.com/burdzwastaken/concourse-spinnaker-resource/concourse",
-			"Rev": "abe750cfee6da25707db69acccae7d9770097977"
+			"Rev": "ed7c5c46da94cc0ad5d91ca8dc6d480f49a6612c"
 		},
 		{
 			"ImportPath": "github.com/mitchellh/colorstring",
