@@ -42,7 +42,7 @@ func main() {
 
 	client := &http.Client{Transport: tr}
 
-	url := fmt.Sprintf("%s/pipelines/%s/%s", request.Source.SpinnakerAPI, request.Params.SpinnakerApplication, request.Params.SpinnakerPipeline)
+	url := fmt.Sprintf("%s/pipelines/%s/%s", request.Source.SpinnakerAPI, request.Source.SpinnakerApplication, request.Source.SpinnakerPipeline)
 
 	if len(request.Params.TriggerParams) == 0 {
 		TriggerParams = []byte(`{"type": "concourse-resource"}`)

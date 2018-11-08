@@ -8,6 +8,8 @@ A [Concourse](https://concourse.ci/) resource that allows jobs to trigger [Spinn
 * `spinnaker_api`: 
 * `x509_cert`:
 * `x509_key`:
+* `spinnaker_application`: The Spinnaker application you would like to trigger.
+* `spinnaker_pipeline`: The Spinnaker pipeline you would like to trigger.
 
 ## Behaviour
 
@@ -22,10 +24,6 @@ Triggers a Spinnaker pipeline.
 #### Parameters
 **NOTE:** Any [metadata](http://concourse.ci/implementing-resources.html#resource-metadata) in the parameters will be evaluated prior to triggering the pipeline. 
 
-##### Required:
-* `spinnaker_application`: The Spinnaker application you would like to trigger.
-* `spinnaker_pipeline`: The Spinnaker pipeline you would like to trigger.
-
 ##### Optional:
 * `trigger_params`: build information to send to Spinnaker pipeline execution which can be consumed by the [pipeline expressions](https://www.spinnaker.io/guides/user/pipeline-expressions/). can be any key/value pair that you would like to consume. 
 
@@ -37,13 +35,15 @@ resource_types:
 - name: spinnaker
   type: docker-image
   source:
-    repository: burdz/concourse-spinnaker-resource
+    repository: burdz/concourse-spinnaker-resource:0.1
 
 resources:
   - name: spinnaker
     type: spinnaker
     source:
       spinnaker_api: ((spinnaker-api))
+      spinnaker_application: samplespinnakerapp
+      spinnaker_pipeline: samplespinnakerapp
       spinnaker_x509_cert: ((spinnaker-x509-cert))
       spinnaker_x509_key: ((spinnaker-x509-key))
 
@@ -52,9 +52,8 @@ jobs:
   plan:
   - put: spinnaker
     params:
-      spinnaker_application: samplespinnakerapp
-      spinnaker_pipeline: samplespinnakerapp
       trigger_params:
         build_id: (build ${BUILD_ID})
 ```
 
+**NOTE**: this changed in `burdz/concourse-spinnaker-resource:0.1`
