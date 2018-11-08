@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/burdzwastaken/concourse-spinnaker-resource/concourse"
@@ -50,7 +51,9 @@ func main() {
 			Params = Params + fmt.Sprintf("\"%s\":\"%s\",", key, value)
 		}
 		Params = strings.TrimSuffix(Params, ",")
-		TriggerParams = []byte(`{"type": "concourse-resource", "parameters": {` + Params + `}}`)
+		// expand any variables
+		paramsText := os.ExpandEnv(Params)
+		TriggerParams = []byte(`{"type": "concourse-resource", "parameters": {` + paramsText + `}}`)
 	}
 
 	concourse.Sayf("Executing pipeline: '%s'\n", url)
