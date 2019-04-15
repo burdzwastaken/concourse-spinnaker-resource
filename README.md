@@ -1,5 +1,7 @@
 # Concourse Spinnaker Resource
 
+*Deprecated*: Please use the [pivotal resource](https://github.com/pivotal-cf/spinnaker-resource) which while based off this resource has active development. 
+
 A [Concourse](https://concourse.ci/) resource that allows jobs to trigger [Spinnaker](https://spinnaker.io/) pipelines. 
 
 ## Source Configuration
